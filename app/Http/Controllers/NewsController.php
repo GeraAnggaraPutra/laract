@@ -6,15 +6,23 @@ use App\Models\News;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Http\Resources\NewsCollection;
+use Validator;
 
 class NewsController extends Controller
 {
+
+    public function dashboard(){
+        $news = News::where('author', auth()->user()->email)->get();
+        return Inertia::render('Dashboard', [
+            'news' => $news
+        ]);
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $news = new NewsCollection(News::paginate(8));
+        $news = new NewsCollection(News::OrderByDesc('id')->paginate(8));
         return Inertia::render('Homepage', [
             'news' => $news,
             'title' => 'News App',
@@ -27,7 +35,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Crud/Create');
     }
 
     /**
@@ -35,7 +43,20 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $news = new News();
+
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'category' => 'required',
+        ]);
+
+        $news->title = $request->title;
+        $news->description = $request->description;
+        $news->category = $request->category;
+        $news->author = auth()->user()->email;
+        $news->save();
+        return redirect()->back()->with('message', 'berita berhasil dibuat');
     }
 
     /**
@@ -51,22 +72,36 @@ class NewsController extends Controller
      */
     public function edit(News $news)
     {
-        //
+        return Inertia::render('Crud/Edit', compact('news'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, News $news)
+    public function update(Request $request, $id)
     {
-        //
+        $news = News::FindOrFail($id);
+
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'category' => 'required',
+        ]);
+
+        $news->title = $request->title;
+        $news->description = $request->description;
+        $news->category = $request->category;
+        $news->author = auth()->user()->email;
+        $news->save();
+        return redirect()->back()->with('message', 'berita berhasil diedit');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(News $news)
+    public function destroy($id)
     {
-        //
+        News::find($id)->delete();
+        return redirect()->back()->with('message', 'berita berhasil dihapus');
     }
 }
