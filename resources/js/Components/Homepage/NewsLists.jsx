@@ -10,7 +10,11 @@ const listNews = (news) => {
                         {data.title}
                         <div className="badge badge-secondary">NEW</div>
                     </h2>
-                    <p>{data.description}</p>
+                    <p>
+                        {data.description.length >= 40
+                            ? data.description.slice(0, 80) + "..."
+                            : data.description}
+                    </p>
                     <div className="card-actions justify-end">
                         <div className="badge badge-inline">
                             {data.category}

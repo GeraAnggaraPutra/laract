@@ -55,8 +55,15 @@ export default function Dashboard({ auth, news }) {
                                                         <td>{data.author}</td>
                                                         <td>{data.category}</td>
                                                         <td>
-                                                            {data.description}
+                                                            {data.description
+                                                                .length >= 40
+                                                                ? data.description.slice(
+                                                                      0,
+                                                                      40
+                                                                  ) + "..."
+                                                                : data.description}
                                                         </td>
+
                                                         <td>
                                                             <button
                                                                 onClick={() =>
