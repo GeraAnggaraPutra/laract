@@ -1,14 +1,31 @@
+import { Inertia } from "@inertiajs/inertia";
+
 const listNews = (news) => {
     return news.map((data, i) => {
+        const today = new Date();
+        const newsDate = new Date(data.createdAt);
+        // Bandingkan apakah tanggal pembuatan berita sama dengan tanggal hari ini
+        const isNew = today.toDateString() === newsDate.toDateString();
+
+        const handleClick = (id) => {
+            Inertia.get(route('detail.news', id))
+        };
+
         return (
-            <div key={i} className="card w-full lg:w-96 bg-base-100 shadow-xl">
-                <figure>
+            <div
+                key={i}
+                className="card w-full lg:w-96 bg-base-100 shadow-xl"
+                onClick={() => handleClick(data.id)}
+            >
+                {/* <figure>
                     <img src="https://placeimg.com/640/480/tech" alt="Shoes" />
-                </figure>
+                </figure> */}
                 <div className="card-body">
                     <h2 className="card-title">
                         {data.title}
-                        <div className="badge badge-secondary">NEW</div>
+                        {isNew && (
+                            <div className="badge badge-secondary">NEW</div>
+                        )}
                     </h2>
                     <p>
                         {data.description.length >= 40
@@ -24,17 +41,15 @@ const listNews = (news) => {
                 </div>
             </div>
         );
-    })
-}
+    });
+};
 
 const noNews = () => {
-    return (
-        <div>Saat ini belum ada berita tersedia</div>
-    )
-}
+    return <div>Saat ini belum ada berita tersedia</div>;
+};
 
 const NewsLists = ({ news }) => {
-    return !news ? noNews() : listNews(news)
-}
+    return !news ? noNews() : listNews(news);
+};
 
-export default NewsLists
+export default NewsLists;

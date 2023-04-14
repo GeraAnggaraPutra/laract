@@ -21,7 +21,8 @@ use Inertia\Inertia;
 Route::get('/', [NewsController::class, 'index']);
 
 Route::middleware('auth')->group(function () {
-    Route::resource('news', NewsController::class)->middleware(['auth', 'verified']);
+    Route::resource('news', NewsController::class);
+    Route::get('/detail/{id}', [NewsController::class, "detail"])->name('detail.news');
     Route::get('/dashboard', [NewsController::class, "dashboard"])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

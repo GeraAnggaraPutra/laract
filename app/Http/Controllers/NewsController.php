@@ -104,4 +104,13 @@ class NewsController extends Controller
         News::find($id)->delete();
         return redirect()->back()->with('message', 'berita berhasil dihapus');
     }
+
+    public function detail($id) 
+    {
+        $news = News::find($id);
+        return Inertia::render('DetailNews', [
+            'news' => $news,
+            'title' => "Detail"
+        ]);
+    }
 }
