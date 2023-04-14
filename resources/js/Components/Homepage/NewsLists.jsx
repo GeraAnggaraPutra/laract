@@ -3,7 +3,7 @@ import { Inertia } from "@inertiajs/inertia";
 const listNews = (news) => {
     return news.map((data, i) => {
         const today = new Date();
-        const newsDate = new Date(data.createdAt);
+        const newsDate = new Date(data.created_at);
         // Bandingkan apakah tanggal pembuatan berita sama dengan tanggal hari ini
         const isNew = today.toDateString() === newsDate.toDateString();
 

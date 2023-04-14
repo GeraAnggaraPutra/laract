@@ -87,31 +87,6 @@ export default function Edit({ auth, news, flash }) {
                                     <div>
                                         <label className="label">
                                             <span className="label-text">
-                                                Description
-                                            </span>
-                                        </label>
-                                        <textarea
-                                            name="description"
-                                            placeholder="input description..."
-                                            className="textarea input-bordered w-full"
-                                            required
-                                            value={data.description}
-                                            onChange={(e) =>
-                                                setData(
-                                                    "description",
-                                                    e.target.value
-                                                )
-                                            }
-                                            rows="5"
-                                        ></textarea>
-                                        <InputError
-                                            message={errors.name}
-                                            className="mt-2"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="label">
-                                            <span className="label-text">
                                                 Category
                                             </span>
                                         </label>
@@ -134,6 +109,32 @@ export default function Edit({ auth, news, flash }) {
                                             className="mt-2"
                                         />
                                     </div>
+                                    <div>
+                                        <label className="label">
+                                            <span className="label-text">
+                                                Description
+                                            </span>
+                                        </label>
+                                        <textarea
+                                            name="description"
+                                            placeholder="input description..."
+                                            className="textarea input-bordered w-full"
+                                            required
+                                            value={data.description}
+                                            onChange={(e) =>
+                                                setData(
+                                                    "description",
+                                                    e.target.value
+                                                )
+                                            }
+                                            rows="5"
+                                        ></textarea>
+                                        <InputError
+                                            message={errors.name}
+                                            className="mt-2"
+                                        />
+                                    </div>
+
                                     <button
                                         type="submit"
                                         className="btn btn-primary mt-4"

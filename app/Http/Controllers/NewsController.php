@@ -64,7 +64,7 @@ class NewsController extends Controller
      */
     public function show(News $news)
     {
-        //
+        return Inertia::render('Crud/Show', compact('news'));
     }
 
     /**

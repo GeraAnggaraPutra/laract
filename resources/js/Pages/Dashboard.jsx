@@ -51,7 +51,15 @@ export default function Dashboard({ auth, news }) {
                                                 return (
                                                     <tr key={data.id}>
                                                         <th>{i + 1}</th>
-                                                        <td>{data.title}</td>
+                                                        <td>
+                                                            {data.title
+                                                                .length >= 30
+                                                                ? data.title.slice(
+                                                                      0,
+                                                                      30
+                                                                  ) + "..."
+                                                                : data.title}
+                                                        </td>
                                                         <td>{data.author}</td>
                                                         <td>{data.category}</td>
                                                         <td>
@@ -85,6 +93,17 @@ export default function Dashboard({ auth, news }) {
                                                                 className="btn btn-success"
                                                             >
                                                                 Edit
+                                                            </Link>
+                                                            |
+                                                            <Link
+                                                                href={route(
+                                                                    "news.show",
+                                                                    data.id
+                                                                )}
+                                                                method="get"
+                                                                className="btn btn-warning"
+                                                            >
+                                                                Show
                                                             </Link>
                                                         </td>
                                                     </tr>
