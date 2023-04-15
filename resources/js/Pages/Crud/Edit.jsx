@@ -55,7 +55,7 @@ export default function Edit({ auth, news, flash }) {
                             <div className="header">
                                 <Link
                                     href={route("dashboard")}
-                                    className="btn btn-primary mb-1"
+                                    className="btn btn-primary mb-1 w-full"
                                 >
                                     Back
                                 </Link>
@@ -139,7 +139,7 @@ export default function Edit({ auth, news, flash }) {
                                         type="submit"
                                         className="btn btn-primary mt-4"
                                     >
-                                        SUBMIT
+                                        SAVE
                                     </button>
                                 </div>
                             </form>

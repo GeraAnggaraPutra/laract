@@ -16,6 +16,9 @@ const listNews = (news) => {
                 key={i}
                 className="card w-full lg:w-96 bg-base-100 shadow-xl"
                 onClick={() => handleClick(data.id)}
+                style={{
+                    height: '300px'
+                }}
             >
                 {/* <figure>
                     <img src="https://placeimg.com/640/480/tech" alt="Shoes" />
@@ -24,12 +27,12 @@ const listNews = (news) => {
                     <h2 className="card-title">
                         {data.title}
                         {isNew && (
-                            <div className="badge badge-secondary">NEW</div>
+                            <div className="badge badge-success">NEW</div>
                         )}
                     </h2>
                     <p>
-                        {data.description.length >= 40
-                            ? data.description.slice(0, 80) + "..."
+                        {data.description.length >= 130
+                            ? data.description.slice(0, 130) + "..."
                             : data.description}
                     </p>
                     <div className="card-actions justify-end">

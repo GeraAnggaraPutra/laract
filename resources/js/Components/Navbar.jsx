@@ -48,7 +48,9 @@ const Navbar = ({ user }) => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link>News</Link>
+                                    <Link href={route("news.index")} as="button">
+                                        News
+                                    </Link>
                                 </li>
                                 <li>
                                     <Link

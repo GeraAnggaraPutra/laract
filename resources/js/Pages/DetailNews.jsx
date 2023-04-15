@@ -8,7 +8,7 @@ export default function DetailNews({ title, auth, news }) {
         <div className="min-h-screen bg-slate-200">
             <Head title={title} />
             <Navbar user={auth.user} />
-            <div className="container mx-auto py-8 px-4">
+            <div className="container mx-auto py-8 px-3">
                 <h1 className="text-3xl font-bold text-center mb-4">
                     {news.title}
                 </h1>
@@ -18,10 +18,10 @@ export default function DetailNews({ title, auth, news }) {
                     </div>
                     <div className="text-gray-500 text-sm">{news.author}</div>
                 </div>
-                <div className="text-lg leading-8">{news.description}</div>
+                <div className="text-lg leading-8 text-center">{news.description}</div>
                 <div className="flex justify-center items-center mt-8">
-                    <Link href="/" className="btn btn-primary">
-                        Kembali
+                    <Link href="/" className="btn btn-primary w-full">
+                        Baca Berita Yang Lain
                     </Link>
                 </div>
             </div>

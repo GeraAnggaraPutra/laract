@@ -12,7 +12,7 @@ class NewsController extends Controller
 {
 
     public function dashboard(){
-        $news = News::where('author', auth()->user()->email)->get();
+        $news = News::where('author', auth()->user()->email)->orderBy('id', 'DESC')->get();
         return Inertia::render('Dashboard', [
             'news' => $news
         ]);
@@ -110,7 +110,7 @@ class NewsController extends Controller
         $news = News::find($id);
         return Inertia::render('DetailNews', [
             'news' => $news,
-            'title' => "Detail"
+            'title' => "Detail News"
         ]);
     }
 }

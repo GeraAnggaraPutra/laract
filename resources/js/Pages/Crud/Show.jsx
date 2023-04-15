@@ -11,7 +11,7 @@ export default function Edit({ auth, news }) {
                 </h2>
             }
         >
-            <Head title="Edit" />
+            <Head title="Detail" />
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -29,7 +29,7 @@ export default function Edit({ auth, news }) {
                                             type="text"
                                             className="input input-bordered w-full"
                                             name="title"
-                                            required
+                                            disabled
                                             value={news.title}
                                         />
                                     </div>
@@ -43,7 +43,7 @@ export default function Edit({ auth, news }) {
                                             type="text"
                                             className="input input-bordered w-full"
                                             name="category"
-                                            required
+                                            disabled
                                             value={news.category}
                                         />
                                     </div>
@@ -56,7 +56,7 @@ export default function Edit({ auth, news }) {
                                         <textarea
                                             name="description"
                                             className="textarea input-bordered w-full"
-                                            required
+                                            disabled
                                             value={news.description}
                                             rows="5"
                                         ></textarea>

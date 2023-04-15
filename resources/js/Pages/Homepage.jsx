@@ -1,7 +1,7 @@
 import NewsLists from '@/Components/Homepage/NewsLists';
 import Paginator from '@/Components/Homepage/Paginator';
 import Navbar from '@/Components/Navbar';
-import { Link, Head } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 
 export default function Homepage(props) {
     return (

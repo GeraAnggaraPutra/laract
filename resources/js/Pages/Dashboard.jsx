@@ -3,7 +3,7 @@ import { Head, Link } from "@inertiajs/react";
 import { Inertia } from "@inertiajs/inertia";
 
 export default function Dashboard({ auth, news }) {
-    
+    console.log(news);
     function destroy(id) {
         if (confirm("Are you sure you want to delete this news?")) {
             Inertia.delete(route("news.destroy", id));
@@ -23,97 +23,115 @@ export default function Dashboard({ auth, news }) {
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div className="bg-slate-200 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900 dark:text-gray-100">
                             <div className="overflow-x-auto">
                                 <div className="header">
                                     <Link
                                         href={route("news.create")}
-                                        className="btn btn-primary mb-1"
+                                        className="btn btn-primary mb-3 w-full"
                                     >
-                                        Create
+                                        Create New News
                                     </Link>
                                 </div>
-                                {news.length ? (
-                                    <table className="table w-full">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Title</th>
-                                                <th>Author</th>
-                                                <th>Category</th>
-                                                <th>Description</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                <div className="flex justify-center flex-col lg:flex-row lg:flex-wrap lg:items-center p-4 gap-4">
+                                    {news.length ? (
+                                        <>
                                             {news.map((data, i) => {
-                                                return (
-                                                    <tr key={data.id}>
-                                                        <th>{i + 1}</th>
-                                                        <td>
-                                                            {data.title
-                                                                .length >= 30
-                                                                ? data.title.slice(
-                                                                      0,
-                                                                      30
-                                                                  ) + "..."
-                                                                : data.title}
-                                                        </td>
-                                                        <td>{data.author}</td>
-                                                        <td>{data.category}</td>
-                                                        <td>
-                                                            {data.description
-                                                                .length >= 40
-                                                                ? data.description.slice(
-                                                                      0,
-                                                                      40
-                                                                  ) + "..."
-                                                                : data.description}
-                                                        </td>
+                                                const today = new Date();
+                                                const newsDate = new Date(
+                                                    data.created_at
+                                                );
+                                                // Bandingkan apakah tanggal pembuatan berita sama dengan tanggal hari ini
+                                                const isNew =
+                                                    today.toDateString() ===
+                                                    newsDate.toDateString();
 
-                                                        <td>
-                                                            <button
-                                                                onClick={() =>
-                                                                    destroy(
+                                                return (
+                                                    <div
+                                                        key={i}
+                                                        className="card w-full lg:w-96 bg-base-100 shadow-xl"
+                                                        style={{
+                                                            height: "300px",
+                                                        }}
+                                                    >
+                                                        {/* <figure>
+                    <img src="https://placeimg.com/640/480/tech" alt="Shoes" />
+                </figure> */}
+                                                        <div className="card-body">
+                                                            <h2 className="card-title">
+                                                                {data
+                                                                    .title
+                                                                    .length >=
+                                                                20
+                                                                    ? data.title.slice(
+                                                                          0,
+                                                                          20
+                                                                      ) + "..."
+                                                                    : data.title}
+
+                                                                {isNew && (
+                                                                    <div className="badge badge-success">
+                                                                        NEW
+                                                                    </div>
+                                                                )}
+                                                            </h2>
+                                                            <div className="badge badge-inline">
+                                                                {data.category}
+                                                            </div>
+                                                            <p>
+                                                                {data
+                                                                    .description
+                                                                    .length >=
+                                                                110
+                                                                    ? data.description.slice(
+                                                                          0,
+                                                                          110
+                                                                      ) + "..."
+                                                                    : data.description}
+                                                            </p>
+                                                            <div className="card-actions justify-center">
+                                                                <button
+                                                                    onClick={() =>
+                                                                        destroy(
+                                                                            data.id
+                                                                        )
+                                                                    }
+                                                                    className="btn btn-error"
+                                                                >
+                                                                    Delete
+                                                                </button>
+
+                                                                <Link
+                                                                    href={route(
+                                                                        "news.edit",
                                                                         data.id
-                                                                    )
-                                                                }
-                                                                className="btn btn-error"
-                                                            >
-                                                                Delete
-                                                            </button>
-                                                            |
-                                                            <Link
-                                                                href={route(
-                                                                    "news.edit",
-                                                                    data.id
-                                                                )}
-                                                                method="get"
-                                                                className="btn btn-success"
-                                                            >
-                                                                Edit
-                                                            </Link>
-                                                            |
-                                                            <Link
-                                                                href={route(
-                                                                    "news.show",
-                                                                    data.id
-                                                                )}
-                                                                method="get"
-                                                                className="btn btn-warning"
-                                                            >
-                                                                Show
-                                                            </Link>
-                                                        </td>
-                                                    </tr>
+                                                                    )}
+                                                                    method="get"
+                                                                    className="btn btn-success"
+                                                                >
+                                                                    Edit
+                                                                </Link>
+                                                                <Link
+                                                                    href={route(
+                                                                        "news.show",
+                                                                        data.id
+                                                                    )}
+                                                                    method="get"
+                                                                    className="btn btn-warning"
+                                                                >
+                                                                    Show
+                                                                </Link>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 );
                                             })}
-                                        </tbody>
-                                    </table>
-                                ) : (
-                                    <p>No news found.</p>
-                                )}
+                                        </>
+                                    ) : (
+                                        <p>No news found.</p>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>
