@@ -19,3 +19,5 @@ createInertiaApp({
         color: '#4B5563',
     },
 });
+
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>;

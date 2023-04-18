@@ -52,7 +52,7 @@ const noNews = () => {
 };
 
 const NewsLists = ({ news }) => {
-    return !news ? noNews() : listNews(news);
+    return news.length == 0 ? noNews() : listNews(news);
 };
 
 export default NewsLists;
