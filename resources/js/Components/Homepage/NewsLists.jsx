@@ -14,7 +14,7 @@ const listNews = (news) => {
         return (
             <div
                 key={i}
-                className="card w-full lg:w-96 bg-base-100 shadow-xl"
+                className="card w-full lg:w-96 bg-base-100 shadow-xl hover:scale-95 duration-500 cursor-pointer"
                 onClick={() => handleClick(data.id)}
                 style={{
                     height: '300px'

@@ -50,7 +50,7 @@ export default function Dashboard({ auth, news }) {
                                                 return (
                                                     <div
                                                         key={i}
-                                                        className="card w-full lg:w-96 bg-base-100 shadow-xl"
+                                                        className="card w-full lg:w-96 bg-base-100 shadow-xl hover:scale-95 duration-500"
                                                         style={{
                                                             height: "300px",
                                                         }}
